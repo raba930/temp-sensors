@@ -18,8 +18,6 @@ const randomTemp = () => {
 for (let i = 0; i < 200; i++) {
     testData.push({inside: randomTemp(), outside: randomTemp()});
 }
-testData.push(lastEntry);
-
 
 describe('Account', () => {
     before(done => {
@@ -32,7 +30,10 @@ describe('Account', () => {
         request = supertest('http://localhost:' + port);
         db = mongoose.connection;
         db.once('open', () => {
-            Entry.create(testData, done);
+            Entry.create(testData, () => {
+                Entry.create(lastEntry, done);
+            });
+
         });
     });
 
@@ -58,7 +59,9 @@ describe('Account', () => {
                 .end((err, res) => {
                     should.not.exist(err);
                     res.body.entries.length.should.be.equal(100);
-                    res.body.entries[99].shoul.be.equal(lastEntry);
+                    res.body.entries[0].inside.should.be.equal(lastEntry.inside);
+                    res.body.entries[0].outside.should.be.equal(lastEntry.outside);
+                    done();
                 });
         });
     });

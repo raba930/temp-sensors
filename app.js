@@ -7,8 +7,11 @@ import bodyParser from 'body-parser';
 import index from './routes/index';
 import mongoose from 'mongoose'
 import dbConfig from './db.js';
+import * as serialport from './serial-port';
 
 let app = express();
+
+serialport.start();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
