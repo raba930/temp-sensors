@@ -20,7 +20,7 @@ a {
   text-align: center;
   font-size: 3rem;
   width: 50%;
-  padding: 4rem;
+  padding: 3rem;
   color: #ffffff;
   font-weight: bold;
 }
@@ -34,4 +34,11 @@ a {
 }
 #vani {
   background-color: #bb1c47;
+}
+#vrijeme {
+  padding: 0.7rem;
+  color: #36079e;
+  text-align: center;
+  font-weight: bold;
+  font-size: 2rem;
 }

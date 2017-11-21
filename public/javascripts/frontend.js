@@ -14,9 +14,19 @@ function getData(firstRender) {
                     Graph = AmCharts.makeChart("chart", graphOptions(res.entries));
                 } else {
                     Graph.dataProvider = res.entries;
+                    Graph.validateData();
                 }
-                $('#unutra span').text(res.entries[0].inside + ' °');
-                $('#vani span').text(res.entries[0].outside + ' °');
+                var entry = res.entries[0];
+                var created_at = new Date(entry.created_at);
+                $('#unutra span').text(entry.inside + ' °');
+                $('#vani span').text(entry.outside + ' °');
+                $('#vrijeme span').text(
+                    created_at.getDate() + '.' +
+                    (created_at.getMonth() + 1) + '.' +
+                    created_at.getFullYear() + '.  ' +
+                    created_at.getHours() +  ' : ' +
+                    created_at.getMinutes()
+                )
             }
         });
 }
