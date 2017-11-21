@@ -64,3 +64,13 @@ window.onload = () => {
     });
     console.log('LOADDDDDD');
 }
+
+setInterval(() => {
+    $.ajax('/current')
+        .done(res => {
+            if (res.entries && res.entries.length) {
+                $('#nutra span').text(res.entries[0].inside);
+                $('#vani span').text(res.entries[0].outside);
+            }
+        });
+}, 120000);

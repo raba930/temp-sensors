@@ -1,6 +1,6 @@
 import SerialPort from 'serialport';
 import Entry from './models/Entry';
-const portName = process.argv[2] || 'tty0'; // FIXME!!!
+const portName = process.argv[2] || '/dev/tty0'; // FIXME!!!
 
 const start = () => {
     const port = new SerialPort(portName, {
@@ -8,11 +8,9 @@ const start = () => {
     });
     
     port.on('data', data => {
-        console.log('yooooooooo :::', data);
-    
-        // const inside = data.split(',')[0]
-        // const outside = data.split(',')[1]
-        // Entry.create({inside, outside}, done);
+        const inside = Number(data.toString().split(',')[0]);
+        const outside = Number(data.toString().split(',')[1]);
+        Entry.create({inside, outside});
     });
 };
 
