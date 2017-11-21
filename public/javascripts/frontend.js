@@ -10,13 +10,16 @@ function getData(firstRender) {
     $.ajax('/current')
         .done(function(res) {
             if (res.entries && res.entries.length) {
+                var data = res.entries.sort(function (a, b) {
+                    return new Date(a.created_at) - new Date(b.created_at);
+                });
                 if (firstRender) {
-                    Graph = AmCharts.makeChart("chart", graphOptions(res.entries));
+                    Graph = AmCharts.makeChart("chart", graphOptions(data));
                 } else {
-                    Graph.dataProvider = res.entries;
+                    Graph.dataProvider = data;
                     Graph.validateData();
                 }
-                var entry = res.entries[0];
+                var entry = data[data.length - 1];
                 var created_at = new Date(entry.created_at);
                 $('#unutra span').text(entry.inside + ' °');
                 $('#vani span').text(entry.outside + ' °');
