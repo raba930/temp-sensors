@@ -8,6 +8,30 @@ a {
 }
 
 #chart {
-  width: 500px;
-  height: 500px;
+  width: 100%;
+  height: 70vh;
+}
+
+#trenutno {
+  display: flex;
+  justify-content: space-around;
+}
+#unutra, #vani {
+  text-align: center;
+  font-size: 3rem;
+  width: 50%;
+  padding: 4rem;
+  color: #ffffff;
+  font-weight: bold;
+}
+#unutra span, #vani span {
+  font-size: 3.5rem;
+  color: #000000;
+  margin-left: 1rem;
+}
+#unutra {
+  background-color: #67d219;
+}
+#vani {
+  background-color: #bb1c47;
 }
