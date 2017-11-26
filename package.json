@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "babel-node --presets latest ./bin/www",
-    "test": "mocha --compilers js:babel-core/register tests/tests.js"
+    "test": "TD_ENV=test mocha --compilers js:babel-core/register tests/tests.js"
   },
   "dependencies": {
     "body-parser": "~1.18.2",
