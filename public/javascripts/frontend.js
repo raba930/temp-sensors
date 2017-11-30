@@ -1,9 +1,26 @@
 var Graph;
 window.onload = function() {
-    setInterval(function() {
+    window.HACK_interval = setInterval(function() {
         getData();
     }, 120000);
     getData(true);
+}
+
+window.HACK_get = function (no) {
+    $.ajax('/dots/' + no)
+        .done(function (res) {
+            if (res.entries && res.entries.length) {
+                var data = res.entries.sort(function (a, b) {
+                    return new Date(a.created_at) - new Date(b.created_at);
+                });
+                if (!Graph) {
+                    Graph = AmCharts.makeChart("chart", graphOptions(data));
+                } else {
+                    Graph.dataProvider = data;
+                    Graph.validateData();
+                }
+            }
+        });
 }
 
 function getData(firstRender) {
