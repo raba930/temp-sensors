@@ -1,6 +1,6 @@
 import SerialPort from 'serialport';
 import Entry from './models/Entry';
-const portName = process.argv[2] || '/dev/tty0'; // FIXME!!!
+const portName = process.argv[2] || '/dev/ttyUSB0'; // FIXME!!!
 
 const start = () => {
     const port = new SerialPort(portName, {

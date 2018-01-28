@@ -4,8 +4,9 @@ import should from 'should';
 import mongoose from 'mongoose';
 import supertest from 'supertest';
 import Entry from '../models/Entry';
+import initData from './initData';
 
-let db, request, testData = [];
+let db, request;
 const port = process.env.TD_TEST_PORT || 3001;
 const server = http.createServer(app);
 const randMax = 40;
@@ -14,10 +15,6 @@ const randomTemp = () => {
     let random = Math.random() * randMax;
     return random.toFixed(2);
 };
-
-for (let i = 0; i < 200; i++) {
-    testData.push({inside: randomTemp(), outside: randomTemp()});
-}
 
 describe('Account', () => {
     before(done => {
@@ -30,7 +27,7 @@ describe('Account', () => {
         request = supertest('http://localhost:' + port);
         db = mongoose.connection;
         db.once('open', () => {
-            Entry.create(testData, () => {
+            Entry.create(initData, () => {
                 Entry.create(lastEntry, done);
             });
 
@@ -43,7 +40,6 @@ describe('Account', () => {
             server.close();
             done();
         });
-        done();
     });
 
     beforeEach(function (done) {

@@ -1,10 +1,13 @@
 import Entry from '../models/Entry';
 import express from 'express';
+import path from 'path';
 const router = express.Router();
-/* GET home page. */
-router.get('/', function(req, res, next) {
-    res.render('index');
+const appRoot = path.dirname(require.main.filename).replace(/\/bin/, '');
+
+router.get('/', function(req, res) {
+    res.sendFile('/public/index.html', { root: appRoot });
 });
+
 router.get('/current', function (req, res) {
     Entry
         .find({}, 'inside outside created_at', (err, data) => {
@@ -15,3 +18,4 @@ router.get('/current', function (req, res) {
         .limit(100);
 });
 module.exports = router;
+

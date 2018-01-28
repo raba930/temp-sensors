@@ -1,0 +1,53 @@
+$color: #333;
+
+body {
+	padding: 50px;
+	font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+	color: #00B7FF;
+}
+
+#chart {
+	width: 100%;
+	height: 70vh;
+}
+
+#trenutno {
+	display: flex;
+	justify-content: space-around;
+}
+
+#unutra,
+#vani {
+	text-align: center;
+	font-size: 3rem;
+	width: 50%;
+	padding: 3rem;
+	color: #ffffff;
+	font-weight: bold;
+}
+
+#unutra span,
+#vani span {
+	font-size: 3.5rem;
+	color: #000000;
+	margin-left: 1rem;
+}
+
+#unutra {
+	background-color: #67d219;
+}
+
+#vani {
+	background-color: #bb1c47;
+}
+
+#vrijeme {
+	padding: 0.7rem;
+	color: #36079e;
+	text-align: center;
+	font-weight: bold;
+	font-size: 2rem;
+}
