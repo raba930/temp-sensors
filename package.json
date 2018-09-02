@@ -4,7 +4,10 @@
   "private": true,
   "scripts": {
     "start": "babel-node --presets latest ./bin/www",
-    "test": "TD_ENV=test mocha --compilers js:babel-core/register tests/tests.js"
+    "test": "TD_ENV=test mocha --compilers js:babel-core/register tests/tests.js",
+    "clean": "rm -rf build && mkdir build",
+    "build-server": "babel -d ./build ./ --ignore ./node_modules -s --copy-files",
+    "build": "npm run clean && npm run build-server"
   },
   "dependencies": {
     "body-parser": "~1.18.2",
